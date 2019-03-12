@@ -1,0 +1,4 @@
+logging:
+  level:
+    hytera.storm.dao: debug
+  logging.config: classpath:logback.xml
