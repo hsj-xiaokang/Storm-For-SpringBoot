@@ -17,7 +17,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-
+/**
+ * 
+* @ClassName: TopologyApp
+* @Description: TODO(Storm（七）通过代码提交Topology:https://www.jianshu.com/p/8d26f3c7c3c8)
+* @author hsj
+* @date 2019年5月8日
+*
+ */
 @Component
 public class TopologyApp {
     private final static Logger logger = LoggerFactory.getLogger(TopologyApp.class);
@@ -49,7 +56,7 @@ public class TopologyApp {
             // 远程模式
 //        	 config.put(Config.NIMBUS_THRIFT_MAX_BUFFER_SIZE, 2048);
         	//mvn package -DskipTests打包项目springboot-storm-0.0.1-SNAPSHOT.jar，然后上传到linux上面/opt/springboot-storm-0.0.1-SNAPSHOT.jar
-//        	System.setProperty("storm.jar", "/opt/springboot-storm-0.0.1-SNAPSHOT.jar");
+        	System.setProperty("storm.jar", "/opt/springboot-storm-0.0.1-SNAPSHOT.jar");
             StormSubmitter.submitTopology(args[0], config, builder.createTopology());
         } else {
             // 本地模式
