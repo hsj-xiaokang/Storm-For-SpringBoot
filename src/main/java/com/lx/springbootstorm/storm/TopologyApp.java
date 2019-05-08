@@ -34,10 +34,10 @@ public class TopologyApp {
         // 禁止使用java语言自己的序列化
         // Config.setFallBackOnJavaSerialization(conf, false);
         config.setDebug(false);
-        config.put(Config.NIMBUS_HOST, "192.168.3.154"); // 配置nimbus连接主机地址，比如：192.168.10.1
+        config.put(Config.NIMBUS_HOST, "192.168.10.73"); // 配置nimbus连接主机地址，比如：192.168.10.1
         config.put(Config.NIMBUS_THRIFT_PORT, 6627);// 配置nimbus连接端口，默认
         // 6627
-        config.put(Config.STORM_ZOOKEEPER_SERVERS, Arrays.asList("127.0.0.1")); // 配置zookeeper连接主机地址，可以使用集合存放多个
+        config.put(Config.STORM_ZOOKEEPER_SERVERS, Arrays.asList("192.168.10.73")); // 配置zookeeper连接主机地址，可以使用集合存放多个
         config.put(Config.STORM_ZOOKEEPER_PORT, 2181); // 配置zookeeper连接端口，默认2181
         /*
          * 初级工程师本地模式和准生产测试时，topology的work的数量都为1，

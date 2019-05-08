@@ -50,12 +50,12 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/user?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://localhost:3307/user?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         //更换为自己电脑账号密码
         dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setPassword("HSJissmart1");
         mpg.setDataSource(dsc);
 
         // 包配置

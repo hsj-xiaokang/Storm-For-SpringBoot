@@ -3,7 +3,8 @@ package com.lx.springbootstorm.storm.bolt;
 
 import com.lx.springbootstorm.entity.User;
 import com.lx.springbootstorm.service.UserService;
-import com.lx.springbootstorm.utils.GetSpringBean;
+import com.lx.springbootstorm.utils.SpringContextHelper;
+
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
@@ -12,6 +13,7 @@ import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.Map;
@@ -28,12 +30,15 @@ public class InsertBolt extends BaseRichBolt{
 
 
     private UserService userService;
+    
+	@Autowired
+	SpringContextHelper springContextHelper;
 
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "static-access" })
     @Override
     public void prepare(Map map, TopologyContext arg1, OutputCollector collector) {
-       userService= GetSpringBean.getBean(UserService.class);
+       userService= springContextHelper.popBean(UserService.class);
     }
 
 
@@ -43,9 +48,9 @@ public class InsertBolt extends BaseRichBolt{
         //User user = userService.selectByPrimaryKey(1);
         //String a = (String) tuple.getValueByField("str");
         try{
-            System.out.println("Time："+new Date() +"--"+"userId:"+user.getUserId()+"--"+"username:"+user.getUserName());
+//            System.out.println("Time："+new Date() +"--"+"userId:"+user.getUserId()+"--"+"username:"+user.getUserName());
            // System.out.println(user.getUserId());
-
+            logger.info("--------Bolt处理数据-------"+"Time："+new Date() +"--"+"userId:"+user.getUserId()+"--"+"username:"+user.getUserName());
         }catch(Exception e){
             logger.error("Bolt的数据处理失败!数据:{}",user.getUserId(),e);
         }
