@@ -33,8 +33,8 @@ public class TopologyApp {
         config.registerSerialization(LinkedList.class);
         // 禁止使用java语言自己的序列化
         // Config.setFallBackOnJavaSerialization(conf, false);
-        config.setDebug(false);
-        config.put(Config.NIMBUS_HOST, "192.168.10.73"); // 配置nimbus连接主机地址，比如：192.168.10.1
+        config.setDebug(true);
+        config.put(Config.NIMBUS_SEEDS , Arrays.asList("192.168.10.73")); // 配置nimbus连接主机地址，比如：192.168.10.1
         config.put(Config.NIMBUS_THRIFT_PORT, 6627);// 配置nimbus连接端口，默认
         // 6627
         config.put(Config.STORM_ZOOKEEPER_SERVERS, Arrays.asList("192.168.10.73")); // 配置zookeeper连接主机地址，可以使用集合存放多个
@@ -47,6 +47,9 @@ public class TopologyApp {
         config.setNumWorkers(1);
         if (args != null && args.length > 0) {
             // 远程模式
+//        	 config.put(Config.NIMBUS_THRIFT_MAX_BUFFER_SIZE, 2048);
+        	//mvn package -DskipTests打包项目springboot-storm-0.0.1-SNAPSHOT.jar，然后上传到linux上面/opt/springboot-storm-0.0.1-SNAPSHOT.jar
+//        	System.setProperty("storm.jar", "/opt/springboot-storm-0.0.1-SNAPSHOT.jar");
             StormSubmitter.submitTopology(args[0], config, builder.createTopology());
         } else {
             // 本地模式

@@ -15,7 +15,7 @@ public class MyStartupRunner implements CommandLineRunner {
 	@SuppressWarnings("static-access")
 	public void run(String... arg0) throws Exception {
 		 TopologyApp app = springContextHelper.popBean(TopologyApp.class);
-		 app.main(arg0);
+		 app.main(new String[]{"hsjtest"});
 	}
  
 }
